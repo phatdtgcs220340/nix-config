@@ -1,8 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../../modules/openjdk.nix ];
+  imports = [ 
+    ../../modules/openjdk.nix 
+    ../../modules/neovim.nix
+  ];
+
   programs.multiJDK.enable = true;
+  phatdo.neovim.enable = true;
   home.username = "phatdo";
   home.homeDirectory = "/home/phatdo";
 
@@ -26,8 +31,6 @@
     neofetch
     ripgrep
     xclip
-    lua-language-server
-    jdt-language-server
     wl-clipboard
     gradle
     iredis
@@ -36,8 +39,6 @@
     greetd.tuigreet
     lazygit
   ];
-
-  programs.neovim.enable = true;
 
   home.stateVersion = "24.05";
 }
