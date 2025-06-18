@@ -21,9 +21,6 @@
     htop
     python3Packages.pip
     nodejs_20
-    openjdk17
-    openjdk21
-    openjdk8
     wofi
     httpie
     neofetch
