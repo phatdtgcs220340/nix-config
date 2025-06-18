@@ -57,8 +57,8 @@ in {
   services.desktopManager.plasma6.enable = false;
   services.xserver.displayManager.startx.enable = false;
   services.xserver.desktopManager.plasma5.enable = false;
-  services.xserver.desktopManager.gnome.enable = false;
-  services.xserver.displayManager.gdm.enable = false;
+  services.desktopManager.gnome.enable = false;
+  services.displayManager.gdm.enable = false;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -99,52 +99,22 @@ in {
   # $ nix search wget
 
   environment.systemPackages = with pkgs; [
-    neovim
-    zsh
-    ghostty
-    spotify
-    sway
-    python310
     git
     curl
     unzip
-    gcc
-    clang
-    zig
-    tmux
-    lazydocker
-    bat
-    fzf
-    htop
-    python3Packages.pip
-    nodejs_20
-    openjdk17
-    openjdk21
-    wofi
-    httpie
-    neofetch
-    ripgrep
-    xclip
-    lua-language-server
-    jdt-language-server
-    wl-clipboard
-    gradle
-    iredis
-    postgresql
-    geeqie
-    greetd.tuigreet
     bibata-cursors
-    lazygit
+    zsh
     # add anything else you use
   ];
-
+  
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
   environment.variables = {
    XCURSOR_THEME = "Bibata-Modern-Ice"; # or "Adwaita", "capitaine-cursors", etc.
    XCURSOR_SIZE = "24";
   };
-  programs.zsh.enable = true;
 
-  users.defaultUserShell = pkgs.zsh;
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
