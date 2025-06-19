@@ -4,19 +4,28 @@
   imports = [ 
     ../../modules/openjdk.nix 
     ../../modules/neovim.nix
+    ../../modules/python.nix
+    ../../modules/ibus-bamboo.nix
   ];
 
   programs.multiJDK.enable = true;
   phatdo.neovim.enable = true;
   home.username = "phatdo";
   home.homeDirectory = "/home/phatdo";
+  phatdo.python = {
+    enable = true;
+    pythonVersion = "python311";
+    packages = [
+      "cryptography"
+    ];
+  }; 
+  phatdo.ibus-bamboo.enable = true;
 
   home.packages = with pkgs; [
     zsh
     ghostty
     spotify
     sway
-    python310
     gcc
     zig
     tmux
@@ -24,6 +33,7 @@
     bat
     fzf
     htop
+    discord
     python3Packages.pip
     nodejs_20
     wofi
