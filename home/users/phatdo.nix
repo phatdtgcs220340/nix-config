@@ -20,7 +20,6 @@
   }; 
 
   home.packages = with pkgs; [
-    zsh
     ghostty
     spotify
     sway
@@ -46,8 +45,11 @@
     geeqie
     greetd.tuigreet
     lazygit
+    starship
+    android-studio
   ];
 
+  
   home.stateVersion = "24.05";
 }
 

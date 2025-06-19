@@ -111,18 +111,22 @@ in {
     curl
     unzip
     bibata-cursors
-    zsh
+    fish
     # add anything else you use
   ];
   
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
   environment.variables = {
    XCURSOR_THEME = "Bibata-Modern-Ice"; # or "Adwaita", "capitaine-cursors", etc.
    XCURSOR_SIZE = "24";
   };
 
-  
+  fonts.packages = [
+    pkgs.nerd-fonts._0xproto
+    pkgs.nerd-fonts.droid-sans-mono
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
