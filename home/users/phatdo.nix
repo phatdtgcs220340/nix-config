@@ -5,7 +5,6 @@
     ../../modules/openjdk.nix 
     ../../modules/neovim.nix
     ../../modules/python.nix
-    ../../modules/ibus-bamboo.nix
   ];
 
   programs.multiJDK.enable = true;
@@ -19,7 +18,6 @@
       "cryptography"
     ];
   }; 
-  phatdo.ibus-bamboo.enable = true;
 
   home.packages = with pkgs; [
     zsh

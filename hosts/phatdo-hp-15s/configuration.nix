@@ -10,6 +10,7 @@ in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/ibus-bamboo.nix
     ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -42,7 +43,14 @@ in {
     LC_TELEPHONE = "vi_VN";
     LC_TIME = "vi_VN";
   };
+  phatdo.ibus-bamboo.enable = true;
 
+  environment.variables = {
+    GTK_IM_MODULE = "ibus";
+    QT_IM_MODULE = "ibus";
+    XMODIFIERS = "@im=ibus";
+    INPUT_METHOD = "ibus";
+  };
   services.greetd = {
     enable = true;
     settings.default_session = {
