@@ -38,15 +38,24 @@
     neofetch
     ripgrep
     xclip
+    # clipboard functions for terminal
     wl-clipboard
     gradle
     iredis
     postgresql
+    # Image view
     geeqie
+    # for sway login using
     greetd.tuigreet
     lazygit
+    # fish theme
     starship
     android-studio
+
+    # Screenshot + Crop image
+    grim
+    slurp
+    swappy
   ];
 
   
