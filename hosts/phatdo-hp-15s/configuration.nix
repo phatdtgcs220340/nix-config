@@ -45,6 +45,11 @@ in {
   };
   phatdo.ibus-bamboo.enable = true;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  }; 
+  services.blueman.enable = true;
   environment.variables = {
     GTK_IM_MODULE = "ibus";
     QT_IM_MODULE = "ibus";
