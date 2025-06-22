@@ -2,10 +2,10 @@
 
 {
   options = {
-    phatdo.neovim.enable = lib.mkEnableOption "Enable Neovim with language servers";
+    working.workflow.neovim.enable = lib.mkEnableOption "Enable Neovim with language servers";
   };
 
-  config = lib.mkIf config.phatdo.neovim.enable {
+  config = lib.mkIf config.working.workflow.neovim.enable {
     programs.neovim = {
       enable = true;
     };

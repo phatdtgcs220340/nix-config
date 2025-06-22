@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  options.phatdo.python = {
+  options.working.coding.python = {
     enable = lib.mkEnableOption "Enable Python with pip packages";
     packages = lib.mkOption {
       type = with lib.types; listOf str;
@@ -15,13 +15,13 @@
     };
   };
 
-  config = lib.mkIf config.phatdo.python.enable {
+  config = lib.mkIf config.working.coding.python.enable {
     home.packages = [
       (
         let
-          python = pkgs.${config.phatdo.python.pythonVersion};
+          python = pkgs.${config.working.coding.python.pythonVersion};
         in
-          python.withPackages (ps: with ps; builtins.map (pkg: ps.${pkg}) config.phatdo.python.packages)
+          python.withPackages (ps: with ps; builtins.map (pkg: ps.${pkg}) config.working.coding.python.packages)
       )
     ];
   };

@@ -111,7 +111,6 @@ in {
     curl
     unzip
     bibata-cursors
-    fish
     # add anything else you use
   ];
   

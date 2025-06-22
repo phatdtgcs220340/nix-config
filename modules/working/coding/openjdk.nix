@@ -12,10 +12,10 @@ let
   '';
 in {
   options = {
-    programs.multiJDK.enable = lib.mkEnableOption "Install multiple JDK versions with isolated wrappers";
+    working.coding.multiJDK.enable = lib.mkEnableOption "Install multiple JDK versions with isolated wrappers";
   };
 
-  config = lib.mkIf config.programs.multiJDK.enable {
+  config = lib.mkIf config.working.coding.multiJDK.enable {
     home.packages = [
       (jdkWrapper "jdk8"  jdk8)
       (jdkWrapper "jdk17" jdk17)
