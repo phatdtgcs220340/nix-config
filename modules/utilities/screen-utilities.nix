@@ -7,9 +7,12 @@
 
   config = lib.mkIf config.utilities.screen-utilities.enable {
     home.packages = with pkgs; [
+      # screenshot, crop image
       grim
       slurp
       swappy
+
+      # image viewer
       geeqie
     ];
   };

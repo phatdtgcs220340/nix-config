@@ -1,3 +1,7 @@
+# My config for development and daily use
+# May take a look at my full .dotfiles config at 
+# https://github.com/phatdtgcs220340/.dotfiles 
+
 { config, pkgs, ... }:
 
 {
@@ -31,6 +35,7 @@
   };
 
   utilities = {
+    enable = true;
     screen-utilities.enable = true;
   };
 
@@ -38,9 +43,6 @@
   school.enable = true;
   home.username = "phatdo";
   home.homeDirectory = "/home/phatdo";
-
-  home.packages = with pkgs; [
-  ];
 
   home.stateVersion = "24.05";
 }

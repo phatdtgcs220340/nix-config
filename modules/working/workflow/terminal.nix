@@ -22,6 +22,7 @@
       lazygit
       starship
       fish
+      jq
     ];
   };
 }

@@ -1,3 +1,4 @@
+# My config for neovim package and its related dependencies
 { config, pkgs, lib, ... }:
 
 {
