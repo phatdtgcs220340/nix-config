@@ -1,6 +1,5 @@
-{ ... } : 
-{ 
-    imports = [
-        ./k8s.nix
-    ];
+{...}: {
+  imports = [
+    ./k8s.nix
+  ];
 }

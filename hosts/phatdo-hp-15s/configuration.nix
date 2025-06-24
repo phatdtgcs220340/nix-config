@@ -1,17 +1,18 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
-let
-  unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
+{
+  config,
+  pkgs,
+  ...
+}: let
+  unstable = import <nixos-unstable> {config = config.nixpkgs.config;};
 in {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/ibus-bamboo.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/ibus-bamboo.nix
+  ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -48,7 +49,7 @@ in {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-  }; 
+  };
   services.blueman.enable = true;
   environment.variables = {
     GTK_IM_MODULE = "ibus";
@@ -98,10 +99,7 @@ in {
   users.users.phatdo = {
     isNormalUser = true;
     description = "Phat Do";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
   # Install firefox.
@@ -119,12 +117,12 @@ in {
     brightnessctl
     # add anything else you use
   ];
-  
+
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
   environment.variables = {
-   XCURSOR_THEME = "Bibata-Modern-Ice"; # or "Adwaita", "capitaine-cursors", etc.
-   XCURSOR_SIZE = "24";
+    XCURSOR_THEME = "Bibata-Modern-Ice"; # or "Adwaita", "capitaine-cursors", etc.
+    XCURSOR_SIZE = "24";
   };
 
   fonts.packages = [
@@ -157,7 +155,7 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment? 
+  system.stateVersion = "25.05"; # Did you read the comment?
   nixpkgs.config.allowUnfree = true;
   virtualisation.docker.enable = true;
 }

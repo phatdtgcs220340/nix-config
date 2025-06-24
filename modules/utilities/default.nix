@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... } :
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./screen-utilities.nix
   ];
@@ -9,8 +13,8 @@
 
   config = lib.mkIf config.utilities.enable {
     home.packages = with pkgs; [
-        pavucontrol # manages sound functionalities
-        bluetuith # manages bluetooth
+      pavucontrol # manages sound functionalities
+      bluetuith # manages bluetooth
     ];
   };
 }

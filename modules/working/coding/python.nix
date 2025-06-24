@@ -1,11 +1,14 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options.working.coding.python = {
     enable = lib.mkEnableOption "Enable Python with pip packages";
     packages = lib.mkOption {
       type = with lib.types; listOf str;
-      default = [ ];
+      default = [];
       description = "List of pip packages to install with Python.";
     };
     pythonVersion = lib.mkOption {
@@ -26,4 +29,3 @@
     ];
   };
 }
-

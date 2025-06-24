@@ -8,38 +8,37 @@
     ibus-bamboo.url = "github:BambooEngine/ibus-bamboo";
   };
 
-  outputs = { self, nixpkgs, home-manager, ibus-bamboo, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
+  outputs = {
+    nixpkgs,
+    home-manager,
+    ibus-bamboo,
+    ...
+  }: let
+    system = "x86_64-linux";
+    bamboo = ibus-bamboo.packages.${system}.default;
+  in {
+    nixosConfigurations = {
+      phatdo-hp-15s = nixpkgs.lib.nixosSystem {
         inherit system;
-        config.allowUnfree = true;
-      };
-      bamboo = ibus-bamboo.packages.${system}.default;
-    in {
-      nixosConfigurations = {
-        phatdo-hp-15s = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./hosts/phatdo-hp-15s/configuration.nix
-            ./modules/ibus-bamboo.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = {
-                bamboo = bamboo;
-              };
+        modules = [
+          ./hosts/phatdo-hp-15s/configuration.nix
+          ./modules/ibus-bamboo.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = {
+              bamboo = bamboo;
+            };
 
-              home-manager.users.phatdo = import ./home/users/phatdo.nix;
-            }
-          ];
-          specialArgs = {
-            inherit bamboo;
-          };
+            home-manager.users.phatdo = import ./home/users/phatdo.nix;
+          }
+        ];
+        specialArgs = {
+          inherit bamboo;
         };
       };
     };
+  };
 }
-

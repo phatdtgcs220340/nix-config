@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     working.workflow.terminal.enable = lib.mkEnableOption "Enable Terminal with daily tools";
   };
@@ -26,4 +29,3 @@
     ];
   };
 }
-

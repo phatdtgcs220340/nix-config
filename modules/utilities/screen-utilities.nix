@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     utilities.screen-utilities.enable = lib.mkEnableOption "Enable screen utilities include screenshot, crop images";
   };
@@ -17,4 +20,3 @@
     ];
   };
 }
-

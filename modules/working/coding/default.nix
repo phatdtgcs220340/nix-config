@@ -1,5 +1,4 @@
-{ ... } : 
-{
+{...}: {
   imports = [
     ./openjdk.nix
     ./python.nix

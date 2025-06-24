@@ -1,5 +1,4 @@
-{ ... } : 
-{
+{...}: {
   imports = [
     ./terminal.nix
     ./neovim.nix
