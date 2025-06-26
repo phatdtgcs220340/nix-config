@@ -13,6 +13,7 @@
       sway
       wofi
       greetd.tuigreet
+      waybar
     ];
   };
 }
