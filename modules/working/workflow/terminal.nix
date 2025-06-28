@@ -13,7 +13,7 @@
       ghostty
       gcc
       zig
-      tmux
+      tmux # need install tpm for plugins using
       lazydocker
       bat
       fzf
@@ -26,6 +26,7 @@
       starship
       fish
       jq
+      yazi
     ];
   };
 }
