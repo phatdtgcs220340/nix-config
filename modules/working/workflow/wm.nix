@@ -10,10 +10,10 @@
 
   config = lib.mkIf config.working.workflow.wm.enable {
     home.packages = with pkgs; [
-      sway
       wofi
       greetd.tuigreet
       waybar
+      swayfx
     ];
   };
 }
