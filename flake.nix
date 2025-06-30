@@ -39,6 +39,22 @@
           inherit bamboo;
         };
       };
+
+      phatdo-legion-wsl = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/phatdo-legion-wsl/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.users.nixos= import ./home/users/phatdo-wsl.nix;
+          }
+        ];
+      };
+
     };
   };
 }
