@@ -74,6 +74,10 @@ in {
   services.desktopManager.gnome.enable = false;
   services.displayManager.gdm.enable = false;
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
