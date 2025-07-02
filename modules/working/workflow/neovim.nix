@@ -24,6 +24,7 @@
         typescript
         typescript-language-server
         tailwindcss-language-server
+        gopls
 
         # Formatters (optional)
         black # Python formatter
@@ -32,6 +33,7 @@
         alejandra # nix formatter
         prettier
         eslint
+        gofumpt
       ];
     };
 

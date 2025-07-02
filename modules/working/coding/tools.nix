@@ -15,6 +15,7 @@
       iredis
       postgresql
       nodejs_20
+      go
     ];
   };
 }
