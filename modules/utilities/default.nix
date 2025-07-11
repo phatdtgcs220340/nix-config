@@ -15,6 +15,8 @@
     home.packages = with pkgs; [
       pavucontrol # manages sound functionalities
       bluetuith # manages bluetooth
+      calcurse # calendar tool
+      obs-studio
     ];
   };
 }

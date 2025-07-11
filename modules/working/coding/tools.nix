@@ -14,8 +14,10 @@
       gradle
       iredis
       postgresql
+      pgadmin4-desktopmode
       nodejs_20
       go
+      postman
     ];
   };
 }
