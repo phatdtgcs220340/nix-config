@@ -92,8 +92,13 @@ in {
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
     # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    #wireplumber no need to redefine it in your config for now)
+    wireplumber.enable = true;
+    extraConfig.pipewire."context.modules" = [
+      {name = "libpipewire-module-x11-bell";}
+      {name = "libpipewire-module-x11-idle-inhibit";}
+      {name = "libpipewire-module-portal";}
+    ];
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -104,6 +109,14 @@ in {
     isNormalUser = true;
     description = "Phat Do";
     extraGroups = ["networkmanager" "wheel" "docker"];
+  };
+
+  services.dbus.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-wlr];
+    config.common.default = "*";
   };
 
   # Install firefox.
@@ -119,6 +132,14 @@ in {
     bash
     bibata-cursors
     brightnessctl
+    pipewire
+    wireplumber
+    xdg-desktop-portal
+    xdg-desktop-portal-wlr
+    xdg-desktop-portal-gtk
+    # optional: ffmpeg for video stuff
+    ffmpeg
+    v4l-utils
     # add anything else you use
   ];
 

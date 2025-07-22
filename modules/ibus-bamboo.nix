@@ -8,7 +8,8 @@
 
   config = lib.mkIf config.phatdo.ibus-bamboo.enable {
     i18n.inputMethod = {
-      enabled = "ibus";
+      enable = true;
+      type = "ibus";
       ibus.engines = [bamboo];
     };
   };
