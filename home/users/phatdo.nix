@@ -17,7 +17,7 @@
       python = {
         enable = true;
         pythonVersion = "python311";
-        packages = ["cryptography"];
+        packages = ["cryptography" "pandas"];
       };
       tools.enable = true;
     };
