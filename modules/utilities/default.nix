@@ -17,6 +17,7 @@
       bluetuith # manages bluetooth
       calcurse # calendar tool
       obs-studio
+      ttyper
     ];
   };
 }
