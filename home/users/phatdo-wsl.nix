@@ -15,7 +15,7 @@
         pythonVersion = "python311";
         packages = ["cryptography"];
       };
-      tools.enable = true;
+      essentials.enable = true;
     };
     workflow = {
       neovim.enable = true;

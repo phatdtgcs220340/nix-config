@@ -19,7 +19,7 @@
         pythonVersion = "python311";
         packages = ["cryptography" "pandas"];
       };
-      tools.enable = true;
+      essentials.enable = true;
     };
     workflow = {
       neovim.enable = true;

@@ -18,6 +18,7 @@
       calcurse # calendar tool
       obs-studio
       ttyper
+      playerctl
     ];
   };
 }
