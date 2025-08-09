@@ -14,6 +14,7 @@
       greetd.tuigreet
       waybar
       swayfx
+      swaynotificationcenter
     ];
   };
 }
