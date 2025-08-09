@@ -5,7 +5,7 @@
   lib,
   ...
 }: {
-  import = [ ./game.nix ];
+  imports = [ ./game.nix ];
   options = {
     desktop.enable = lib.mkEnableOption "Enable desktop apps";
   };
