@@ -5,6 +5,7 @@
   lib,
   ...
 }: {
+  import = [ ./game.nix ];
   options = {
     desktop.enable = lib.mkEnableOption "Enable desktop apps";
   };
@@ -12,9 +13,8 @@
     home.packages = with pkgs; [
       spotify
       discord
-      zathura
-      steam
-      lutris
+      slack
+      code-cursor
     ];
   };
 }

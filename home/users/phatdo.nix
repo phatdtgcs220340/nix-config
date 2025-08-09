@@ -36,7 +36,11 @@
     screen-utilities.enable = true;
   };
 
-  desktop.enable = true;
+  desktop = {
+    enable = true;
+    game.enable = true;
+  };
+
   school.enable = true;
   home.username = "phatdo";
   home.homeDirectory = "/home/phatdo";
