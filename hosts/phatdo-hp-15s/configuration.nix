@@ -2,16 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
   pkgs,
   ...
-}: let
-  unstable = import <nixos-unstable> {config = config.nixpkgs.config;};
-in {
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/ibus-bamboo.nix
   ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -44,7 +40,6 @@ in {
     LC_TELEPHONE = "vi_VN";
     LC_TIME = "vi_VN";
   };
-  phatdo.ibus-bamboo.enable = true;
 
   hardware.bluetooth = {
     enable = true;
@@ -128,6 +123,8 @@ in {
     brightnessctl
     xdg-desktop-portal
     xdg-desktop-portal-wlr
+    pipewire
+    wireplumber
     # add anything else you use
   ];
 
