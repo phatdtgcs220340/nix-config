@@ -14,7 +14,6 @@
       spotify
       discord
       slack
-      code-cursor
     ];
   };
 }

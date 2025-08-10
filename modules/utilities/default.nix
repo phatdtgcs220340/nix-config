@@ -14,11 +14,10 @@
   config = lib.mkIf config.utilities.enable {
     home.packages = with pkgs; [
       pavucontrol # manages sound functionalities
-      bluetuith # manages bluetooth
       calcurse # calendar tool
-      obs-studio
       ttyper
       playerctl
+      popsicle
     ];
   };
 }
