@@ -50,11 +50,32 @@
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
 
-            home-manager.users.nixos= import ./home/users/phatdo-wsl.nix;
+            home-manager.users.nixos = import ./home/users/phatdo-wsl.nix;
           }
         ];
       };
 
+      phatdo-wala-nixos = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/phatdo-wala-nixos/configuration.nix
+          ./modules/ibus-bamboo.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = {
+              bamboo = bamboo;
+            };
+
+            home-manager.users.phatdo = import ./home/users/phatdo-wala.nix;
+          }
+        ];
+        specialArgs = {
+          inherit bamboo;
+        };
+      };
     };
   };
 }
