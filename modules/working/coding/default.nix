@@ -22,6 +22,7 @@
       nodejs_20
       go
       postman
+      mysql84
     ];
   };
 }

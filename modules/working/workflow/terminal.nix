@@ -27,6 +27,8 @@
       fish
       jq
       yazi
+      mycli
+      wl-clipboard
     ];
   };
 }

@@ -14,6 +14,7 @@
       spotify
       discord
       slack
+      telegram-desktop
     ];
   };
 }

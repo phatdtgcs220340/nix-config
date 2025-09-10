@@ -128,6 +128,7 @@
     xdg-desktop-portal-wlr
     pipewire
     wireplumber
+    ntfs3g
     # add anything else you use
   ];
 
@@ -170,5 +171,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
   virtualisation.docker.enable = true;
+  services.upower.enable = true;
 }

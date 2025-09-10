@@ -18,6 +18,10 @@
       ttyper
       playerctl
       popsicle
+      upower
+      tlp
+      woeusb
+      zip
     ];
   };
 }
