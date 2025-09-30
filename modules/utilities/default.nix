@@ -22,6 +22,7 @@
       tlp
       woeusb
       zip
+      ncdu
     ];
   };
 }

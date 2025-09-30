@@ -23,6 +23,7 @@
       go
       postman
       mysql84
+      yarn
     ];
   };
 }
