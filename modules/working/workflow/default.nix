@@ -10,5 +10,6 @@
   home.packages = with pkgs; [
     stow # for manage dotfiles
     zathura # read pdf
+    hurl
   ];
 }
