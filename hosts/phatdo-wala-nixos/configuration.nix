@@ -139,9 +139,10 @@
     XCURSOR_SIZE = "24";
   };
 
-  fonts.packages = [
-    pkgs.nerd-fonts._0xproto
-    pkgs.nerd-fonts.droid-sans-mono
+  fonts.packages = with pkgs; [
+    nerd-fonts._0xproto
+    nerd-fonts.droid-sans-mono
+    jetbrains-mono
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -29,6 +29,7 @@
       yazi
       mycli
       wl-clipboard
+      alacritty
     ];
   };
 }
