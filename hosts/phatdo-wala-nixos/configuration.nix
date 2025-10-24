@@ -129,6 +129,7 @@
     pipewire
     wireplumber
     ntfs3g
+    cloudflare-warp
     # add anything else you use
   ];
 
@@ -175,4 +176,14 @@
   nixpkgs.config.allowUnsupportedSystem = true;
   virtualisation.docker.enable = true;
   services.upower.enable = true;
+
+  systemd.services.warp-svc = {
+    description = "Cloudflare WARP service";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.cloudflare-warp}/bin/warp-svc";
+      Restart = "always";
+    };
+  };
 }
