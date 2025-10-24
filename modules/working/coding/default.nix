@@ -19,7 +19,7 @@
       iredis
       postgresql
       pgadmin4-desktopmode
-      nodejs_20
+      nodejs_22
       go
       postman
       mysql84
