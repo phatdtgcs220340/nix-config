@@ -1,35 +1,22 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+{ config, pkgs, ... }:
+
 {
-  pkgs,
-  ...
-}: {
   imports = [
-    # Include the results of the hardware scan.
-    ../../modules/ibus-bamboo.nix
     ./hardware-configuration.nix
+    ../../modules/ibus-bamboo.nix
   ];
-  # Bootloader.
+
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
+  # Hostname and networking
+  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # Time zone and locale
   time.timeZone = "Asia/Ho_Chi_Minh";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "vi_VN";
     LC_IDENTIFICATION = "vi_VN";
@@ -42,19 +29,29 @@
     LC_TIME = "vi_VN";
   };
 
+  # Input method (Bamboo)
   phatdo.ibus-bamboo.enable = true;
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-  services.blueman.enable = true;
   environment.variables = {
     GTK_IM_MODULE = "ibus";
     QT_IM_MODULE = "ibus";
     XMODIFIERS = "@im=ibus";
     INPUT_METHOD = "ibus";
   };
+
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
+  # Display manager and compositor
+  services.xserver.enable = false;
+  services.desktopManager.gnome.enable = false;
+  services.desktopManager.plasma6.enable = false;
+  services.displayManager.gdm.enable = false;
+  services.xserver.displayManager.startx.enable = false;
+
   services.greetd = {
     enable = true;
     settings.default_session = {
@@ -63,23 +60,16 @@
     };
   };
 
-  services.xserver.enable = false;
-  services.gnome.core-shell.enable = false;
-  services.gnome.core-apps.enable = false;
-  services.desktopManager.plasma6.enable = false;
-  services.xserver.displayManager.startx.enable = false;
-  services.xserver.desktopManager.plasma5.enable = false;
-  services.desktopManager.gnome.enable = false;
-  services.displayManager.gdm.enable = false;
-
+  # Graphics support
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-  # Enable CUPS to print documents.
+
+  # Printing
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
+  # Sound via PipeWire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -87,36 +77,49 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
     jack.enable = true;
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    #wireplumber no need to redefine it in your config for now)
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # Power management
+  services.upower.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.phatdo = {
-    isNormalUser = true;
-    description = "Phat Do";
-    extraGroups = ["networkmanager" "wheel" "docker"];
-  };
+  # Docker
+  virtualisation.docker.enable = true;
 
+  # D-Bus
   services.dbus.enable = true;
 
+  # XDG portals for Wayland
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-wlr];
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
     config.common.default = "*";
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
+  # User account
+  users.users.phatdo = {
+    isNormalUser = true;
+    description = "Phat Do";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+  };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # Shell
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
 
+  # Fonts and cursor
+  fonts.packages = with pkgs; [
+    nerd-fonts._0xproto
+    nerd-fonts.droid-sans-mono
+    jetbrains-mono
+  ];
+
+  environment.variables = {
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";
+  };
+
+  # Packages
   environment.systemPackages = with pkgs; [
     git
     curl
@@ -130,53 +133,10 @@
     wireplumber
     ntfs3g
     cloudflare-warp
-    # add anything else you use
+    firefox
   ];
 
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
-  environment.variables = {
-    XCURSOR_THEME = "Bibata-Modern-Ice"; # or "Adwaita", "capitaine-cursors", etc.
-    XCURSOR_SIZE = "24";
-  };
-
-  fonts.packages = with pkgs; [
-    nerd-fonts._0xproto
-    nerd-fonts.droid-sans-mono
-    jetbrains-mono
-  ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnsupportedSystem = true;
-  virtualisation.docker.enable = true;
-  services.upower.enable = true;
-
+  # Cloudflare WARP service
   systemd.services.warp-svc = {
     description = "Cloudflare WARP service";
     wantedBy = [ "multi-user.target" ];
@@ -186,4 +146,12 @@
       Restart = "always";
     };
   };
+
+  # Nix settings
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
+
+  # System version
+  system.stateVersion = "25.05";
 }
+
