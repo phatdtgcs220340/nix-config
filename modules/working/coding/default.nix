@@ -24,6 +24,7 @@
       postman
       mysql84
       yarn
+      rustc
     ];
   };
 }

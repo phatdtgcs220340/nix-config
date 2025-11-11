@@ -41,23 +41,62 @@
     LC_TIME = "vi_VN";
   };
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-  services.blueman.enable = true;
   environment.variables = {
     GTK_IM_MODULE = "ibus";
     QT_IM_MODULE = "ibus";
     XMODIFIERS = "@im=ibus";
     INPUT_METHOD = "ibus";
   };
-  services.greetd = {
+
+  hardware.bluetooth = {
     enable = true;
-    settings.default_session = {
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd sway";
-      user = "phatdo";
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
+  environment.etc."regreet/background.jpg".source =
+    /home/phatdo/.dotfiles/images/wallpapers/pochita.png;
+
+  programs.regreet = {
+    enable = true;
+    settings = {
+      background = {
+        path = "/etc/regreet/background.jpg";
+        fit = "Fill";
+      };
+      env = {
+        ENV_VARIABLE = "value";
+      };
+      GTK = {
+        application_prefer_dark_theme = true;
+        cursor_theme_name = "Adwaita";
+        cursor_blink = true;
+        font_name = "Cantarell 16";
+        icon_theme_name = "Adwaita";
+        theme_name = "Adwaita";
+      };
+      commands = {
+        reboot = ["systemctl" "reboot"];
+        poweroff = ["systemctl" "poweroff"];
+        x11_prefix = ["startx" "/usr/bin/env"];
+      };
+      appearance = {
+        greeting_msg = "Xin tao chua ma vo may cua tao";
+      };
+      widget = {
+        clock = {
+          format = "%a %H:%M";
+          resolution = "500ms";
+          timezone = "Asia/Ho_Chi_Minh";
+          label_width = 150;
+        };
+      };
     };
+    extraCss = ''
+        .card {
+            background-color: #222;
+      }
+    '';
   };
 
   services.xserver.enable = false;

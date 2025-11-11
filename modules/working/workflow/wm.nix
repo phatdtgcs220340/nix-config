@@ -11,7 +11,6 @@
   config = lib.mkIf config.working.workflow.wm.enable {
     home.packages = with pkgs; [
       wofi
-      greetd.tuigreet
       waybar
       swayfx
       swaynotificationcenter

@@ -8,7 +8,6 @@
     ../../modules/working/devops
     ../../modules/utilities
     ../../modules/desktop
-    ../../modules/school
   ];
 
   working = {
@@ -41,7 +40,6 @@
     game.enable = true;
   };
 
-  school.enable = true;
   home.username = "phatdo";
   home.homeDirectory = "/home/phatdo";
 

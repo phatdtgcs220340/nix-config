@@ -15,6 +15,7 @@
       discord
       slack
       telegram-desktop
+      dbeaver-bin
     ];
   };
 }
