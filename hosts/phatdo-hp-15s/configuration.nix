@@ -1,11 +1,9 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
+    ../../modules/ibus-bamboo.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -164,8 +162,20 @@
     xdg-desktop-portal-wlr
     pipewire
     wireplumber
+    cloudflare-warp
     # add anything else you use
   ];
+
+  # Cloudflare WARP service
+  systemd.services.warp-svc = {
+    description = "Cloudflare WARP service";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+    serviceConfig = {
+      ExecStart = "${pkgs.cloudflare-warp}/bin/warp-svc";
+      Restart = "always";
+    };
+  };
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
@@ -207,4 +217,5 @@
   system.stateVersion = "25.05"; # Did you read the comment?
   nixpkgs.config.allowUnfree = true;
   virtualisation.docker.enable = true;
+  phatdo.ibus-bamboo.enable = true;
 }
