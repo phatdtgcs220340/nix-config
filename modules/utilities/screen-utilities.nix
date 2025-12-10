@@ -17,6 +17,9 @@
 
       # image viewer
       geeqie
+
+      # animated background
+      mpvpaper
     ];
   };
 }

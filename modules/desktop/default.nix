@@ -15,7 +15,9 @@
       discord
       slack
       telegram-desktop
-      dbeaver-bin
+      obs-studio
+      vlc
+      libsForQt5.kdenlive
     ];
   };
 }
