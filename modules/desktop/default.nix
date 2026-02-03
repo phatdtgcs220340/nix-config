@@ -18,6 +18,7 @@
       obs-studio
       vlc
       libsForQt5.kdenlive
+      xfce.thunar
     ];
   };
 }

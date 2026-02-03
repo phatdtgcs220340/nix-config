@@ -30,6 +30,7 @@
       mycli
       wl-clipboard
       alacritty
+      pgcli
     ];
   };
 }

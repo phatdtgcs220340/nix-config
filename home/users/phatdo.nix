@@ -16,7 +16,7 @@
       python = {
         enable = true;
         pythonVersion = "python311";
-        packages = ["cryptography" "pandas"];
+        packages = ["cryptography" "pandas" "keyring"];
       };
       essentials.enable = true;
     };
